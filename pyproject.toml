@@ -1,7 +1,7 @@
 [project]
-name = "final-project"
+name = "drive-app"
 version = "0.1.0"
-description = "Add your description here"
+description = "driVE platform webapp"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

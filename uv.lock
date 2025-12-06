@@ -33,7 +33,7 @@ wheels = [
 ]
 
 [[package]]
-name = "final-project"
+name = "drive-app"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
