@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Listing ID</th>
+            <th>Listing Location</th>
+            <th>Listing Price</th>
+        </tr>
+
+        {% for item in listings %}
+        <tr>
+            <td>{{ item.listing_id }}</td>
+            <td>{{ item.listing_location }}</td>
+            <td>{{ item.listing_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>
+</html>
