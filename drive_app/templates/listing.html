@@ -12,13 +12,19 @@
             <th>Listing ID</th>
             <th>Listing Location</th>
             <th>Listing Price</th>
+            <th>Listing status</th>
         </tr>
 
         {% for item in listings %}
         <tr>
-            <td>{{ item.listing_id }}</td>
+            <td>
+                <a href="{{ url_for('listing_detail', listing_id=item.listing_id) }}">
+                    {{ item.listing_id }}
+                </a>
+            </td>
             <td>{{ item.listing_location }}</td>
             <td>{{ item.listing_price }}</td>
+            <td>{{ item.listing_status }}</td>
         </tr>
         {% endfor %}
     </table>

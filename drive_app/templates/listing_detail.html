@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Listing {{ listing.listing_id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Listing #{{ listing.listing_id }}</h1>
+
+    <h2>Listing Details</h2>
+    <p><strong>Location:</strong> {{ listing.listing_location }}</p>
+    <p><strong>Price:</strong> ${{ listing.listing_price }}</p>
+    <p><strong>Status:</strong> {{ listing.listing_status }}</p>
+
+    {% if listing.item %}
+      <h2>Item Details</h2>
+      <p><strong>Item ID:</strong> {{ listing.item.item_id }}</p>
+      <p><strong>Quality:</strong> {{ listing.item.item_quality }}</p>
+
+      {% if listing.item.car %}
+        <h3>Car Information</h3>
+        <p><strong>VIN:</strong> {{ listing.item.car.car_vin }}</p>
+        {% if listing.item.car.model %}
+          <p><strong>Brand:</strong> {{ listing.item.car.model.brand.brand_name }}</p>
+          <p><strong>Model:</strong> {{ listing.item.car.model.model_name }}</p>
+          <p><strong>Year:</strong> {{ listing.item.car.model.model_year }}</p>
+          {% if listing.item.car.model.model_trim %}
+            <p><strong>Trim:</strong> {{ listing.item.car.model.model_trim }}</p>
+          {% endif %}
+          {% if listing.item.car.model.model_color %}
+            <p><strong>Color:</strong> {{ listing.item.car.model.model_color }}</p>
+          {% endif %}
+        {% endif %}
+      {% elif listing.item.accessory %}
+        <h3>Accessory Information</h3>
+        <p><strong>Description:</strong> {{ listing.item.accessory.access_descript }}</p>
+        {% if listing.item.accessory.brand %}
+          <p><strong>Brand:</strong> {{ listing.item.accessory.brand.brand_name }}</p>
+        {% endif %}
+      {% endif %}
+    {% else %}
+      <p><em>No item assigned to this listing.</em></p>
+    {% endif %}
+
+    {% if listing.seller %}
+      <h2>Seller Information</h2>
+      <p><strong>Name:</strong> {{ listing.seller.user_fname }} {{ listing.seller.user_lname }}</p>
+      <p><strong>Email:</strong> {{ listing.seller.user_email }}</p>
+      {% if listing.seller.user_phone %}
+        <p><strong>Phone:</strong> {{ listing.seller.user_phone }}</p>
+      {% endif %}
+    {% else %}
+      <p><em>No seller assigned.</em></p>
+    {% endif %}
+
+    {% if listing.purchases %}
+      <h2>Purchase History</h2>
+      {% for purchase in listing.purchases %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+          <p><strong>Purchase ID:</strong> {{ purchase.purchase_id }}</p>
+          <p><strong>Date:</strong> {{ purchase.purchase_date }}</p>
+          <p><strong>Price:</strong> ${{ purchase.purchase_price }}</p>
+          {% if purchase.buyer %}
+            <p><strong>Buyer:</strong> {{ purchase.buyer.user_fname }} {{ purchase.buyer.user_lname }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <p><a href="{{ url_for('show_listing') }}">Back to listings</a></p>
+  </body>
+</html>
