@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-<body>
-    {% extends "base.html" %}
-    {% block content %}
+{% extends "base.html" %}
 
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>Listing ID</th>
-            <th>Listing Location</th>
-            <th>Listing Price</th>
-            <th>Listing status</th>
-        </tr>
+{% block content %}
+<h1>All Listings</h1>
 
-        {% for item in listings %}
-        <tr>
-            <td>
-                <a href="{{ url_for('listing_detail', listing_id=item.listing_id) }}">
-                    {{ item.listing_id }}
-                </a>
-            </td>
-            <td>{{ item.listing_location }}</td>
-            <td>{{ item.listing_price }}</td>
-            <td>{{ item.listing_status }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endblock %}
-</body>
-</html>
+<table>
+    <tr>
+        <th>Listing ID</th>
+        <th>Listing Location</th>
+        <th>Listing Price</th>
+        <th>Listing Status</th>
+    </tr>
+
+    {% for item in listings %}
+    <tr>
+        <td>
+            <a href="{{ url_for('listing_detail', listing_id=item.listing_id) }}">
+                {{ item.listing_id }}
+            </a>
+        </td>
+        <td>{{ item.listing_location }}</td>
+        <td>{{ item.listing_price }}</td>
+        <td>{{ item.listing_status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,13 +1,110 @@
+:root {
+    --primary-color: rgb(99, 255, 200);
+    --font-color: rgb(0, 66, 46);
+    --hover-color: #d39aff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--font-color);
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo {
+    height: 50px;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--font-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--hover-color);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Typography */
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-bottom: 1.5rem;
+    color: var(--font-color);
+}
+
+h2 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--font-color);
+}
+
+h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--font-color);
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+/* Table Styling */
 table {
-    width: 80%;
+    width: 100%;
     margin: 20px auto;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
 }
 
 th {
-    background-color: #4a90e2;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--font-color);
     padding: 10px;
     text-align: left;
 }
@@ -21,11 +118,21 @@ tr:nth-child(even) {
     background-color: #f7f7f7;
 }
 
-h1 {
-    text-align: center;
-    font-family: Arial, sans-serif;
+td a {
+    color: var(--font-color);
+    text-decoration: none;
 }
 
-.logo {
-    height: 50px;
+td a:hover {
+    text-decoration: underline;
+    color: var(--hover-color);
+}
+
+/* Purchase History Boxes */
+.purchase-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
