@@ -3,25 +3,66 @@
 {% block content %}
 <h1>All Listings</h1>
 
-<table>
-    <tr>
-        <th>Listing ID</th>
-        <th>Listing Location</th>
-        <th>Listing Price</th>
-        <th>Listing Status</th>
-    </tr>
+<div class="tabs">
+    <button class="tab-button active" data-tab="cars">Cars</button>
+    <button class="tab-button" data-tab="accessories">Accessories</button>
+</div>
 
-    {% for item in listings %}
-    <tr>
-        <td>
-            <a href="{{ url_for('listing_detail', listing_id=item.listing_id) }}">
-                {{ item.listing_id }}
-            </a>
-        </td>
-        <td>{{ item.listing_location }}</td>
-        <td>{{ item.listing_price }}</td>
-        <td>{{ item.listing_status }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div id="cars" class="tab-content active">
+    <table>
+        <tr>
+            <th>Listing ID</th>
+            <th>VIN</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+
+        {% for listing in listings %}
+            {% if listing.item and listing.item.car %}
+            <tr class="clickable-row" data-href="{{ url_for('listing_detail', listing_id=listing.listing_id) }}">
+                <td>{{ listing.listing_id }}</td>
+                <td>{{ listing.item.car.car_vin }}</td>
+                <td>{{ listing.item.car.model.brand.brand_name if listing.item.car.model else 'N/A' }}</td>
+                <td>{{ listing.item.car.model.model_name if listing.item.car.model else 'N/A' }}</td>
+                <td>{{ listing.item.car.model.model_year if listing.item.car.model else 'N/A' }}</td>
+                <td>{{ listing.listing_location }}</td>
+                <td>${{ listing.listing_price }}</td>
+                <td>{{ listing.listing_status }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
+
+<div id="accessories" class="tab-content">
+    <table>
+        <tr>
+            <th>Listing ID</th>
+            <th>Description</th>
+            <th>Brand</th>
+            <th>Quality</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+
+        {% for listing in listings %}
+            {% if listing.item and listing.item.accessory %}
+            <tr class="clickable-row" data-href="{{ url_for('listing_detail', listing_id=listing.listing_id) }}">
+                <td>{{ listing.listing_id }}</td>
+                <td>{{ listing.item.accessory.access_descript }}</td>
+                <td>{{ listing.item.accessory.brand.brand_name if listing.item.accessory.brand else 'N/A' }}</td>
+                <td>{{ listing.item.item_quality }}</td>
+                <td>{{ listing.listing_location }}</td>
+                <td>${{ listing.listing_price }}</td>
+                <td>{{ listing.listing_status }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
