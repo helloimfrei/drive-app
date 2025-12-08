@@ -23,6 +23,7 @@ def show_listing():
     rows = Listing.query.all()
     return render_template("listing.html", listings=rows)
 
+
 @app.route("/listing/<int:listing_id>")
 def listing_detail(listing_id):
     # get_or_404 returns a 404 page if not found
