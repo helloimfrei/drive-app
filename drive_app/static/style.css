@@ -69,6 +69,20 @@ body {
     padding: 0 1rem;
 }
 
+.home-panels {
+  display: flex;          
+  flex-direction: row;
+  justify-content: center;    
+}
+
+.panel {
+  flex: 1;    
+  display: flex;           
+  padding: 1rem;
+  border: 1px solid #ccc;
+  justify-content: center;
+}
+
 /* Typography */
 h1 {
     text-align: center;

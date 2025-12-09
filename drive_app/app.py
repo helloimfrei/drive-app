@@ -30,6 +30,10 @@ def listing_detail(listing_id):
     listing = Listing.query.get_or_404(listing_id)
     return render_template("listing_detail.html", listing=listing)
 
+@app.route("/why-ev")
+def ev_info():
+    return render_template("why_ev.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
